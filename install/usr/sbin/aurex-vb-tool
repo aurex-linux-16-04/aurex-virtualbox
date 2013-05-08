@@ -65,6 +65,8 @@ fi
 CACHE_DIR="/var/cache/aurex-virtualbox"
 REQ_FILE="$CACHE_DIR/$REQ_NAME"
 REQ_URL="http://download.virtualbox.org/virtualbox/$REQ_VER/$REQ_NAME"
+
+rc=0
 if [ ! -r "$REQ_FILE" ] ; then
 	# try to download file
 	axel -a -o $CACHE_DIR -n 8 "$REQ_URL" || rc=$?
@@ -75,7 +77,7 @@ if [ ! -r "$REQ_FILE" ] ; then
 	exit 1
 fi
 
-VBoxManage extpack install --replace "$REQ_FILE" || rc =$?
+VBoxManage extpack install --replace "$REQ_FILE" || rc=$?
 if [ $rc -ne 0 ] ; then
 	echo "Error installing $REQ_FILE. Exiting"
 	exit 1
