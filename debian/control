@@ -1,0 +1,13 @@
+Source: aurex-virtualbox
+Section: admin
+Priority: optional
+Maintainer: Luis Antonio Garcia Gisbert <luisgg@gmail.com>
+Build-Depends: debhelper (>= 7.0)
+Standards-Version: 3.8.4
+
+Package: aurex-virtualbox-4.2
+Architecture: all
+Depends: ${misc:Depends}, virtualbox-4.2 (=${VBVersion})
+Description: generic virtualbox-4.2 package for aurex
+ This package will always depend on the latest virtualbox-4.2 and
+ extension pack available to keep both programs in sync.

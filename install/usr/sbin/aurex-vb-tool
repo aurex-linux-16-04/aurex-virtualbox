@@ -1,0 +1,85 @@
+#!/bin/sh
+# -------
+# File:        aurex-vb-tool
+# Description: Manage VirtualBox extension packs
+# Author:      Luis Antonio Garcia Gisbert <luisgg@gmail.com> 
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along 
+# with this program; if not, write to the Free Software Foundation, Inc., 
+# 51 Franklin St, Fifth Floor, Boston MA 02110-1301 USA
+# --------
+
+# whoami?
+usage(){
+	echo "$(basename "$0") update-extpack" >&2
+	exit 1
+}
+
+[ "$1" = "update-extpack" ] || usage
+
+BASE_NAME="$(basename "$0" |sed -e "s%^aurex-%%;s%-tool%%")"
+case "$BASE_NAME" in
+	vb4.2|vb-4.2)
+		VBOXPACKAGE="virtualbox-4.2"
+		;;
+	vb4.1|vb-4.1)
+		VBOXPACKAGE="virtualbox-4.1"
+		;;
+	*)
+		VBOXPACKAGE="virtualbox-4.0"
+		;;
+esac
+
+CURRENT_VERSION="$(dpkg -s "$VBOXPACKAGE" 2>/dev/null |sed -ne "/^Version:/s%^.*[[:blank:]]%%p")"
+# check installation
+if [ -z "$CURRENT_VERSION" ] ; then
+	echo "VirtualBox not installed. Exiting"
+	exit 0
+fi
+
+REQ_VER="${CURRENT_VERSION%%-*}"
+REQ_VR="${CURRENT_VERSION%%~*}"
+REQ_REV="${REQ_VR##*-}"
+REQ_NAME="Oracle_VM_VirtualBox_Extension_Pack-${REQ_VR}.vbox-extpack"
+
+CURRENT_VER="$(VBoxManage list extpacks |sed -ne "/^Version:/{s%^.*[[:blank:]]%%;p}")"
+CURRENT_REV="$(VBoxManage list extpacks |sed -ne "/^Revision:/{s%^.*[[:blank:]]%%;p}")"
+
+DOWNLOAD_EXT="Y"
+if [ "$CURRENT_VER" ] && [ "$CURRENT_REV" ] && [ "$CURRENT_VER" = "$REQ_VER" ] && [ "$CURRENT_REV" = "$REQ_REV" ] ; then
+	# not download nor install required
+	echo "Extension pack updated. Exiting"
+	exit 0
+fi
+
+CACHE_DIR="/var/cache/aurex-virtualbox"
+REQ_FILE="$CACHE_DIR/$REQ_NAME"
+REQ_URL="http://download.virtualbox.org/virtualbox/$REQ_VER/$REQ_NAME"
+if [ ! r "$REQ_FILE" ] ; then
+	# try to download file
+	axel -a -o $CACHE_DIR -n 8 "$REQ_URL" || rc=$?
+fi
+
+if [ ! r "$REQ_FILE" ] ; then
+	echo "Error downloading $REQ_URL" >&2
+	exit 1
+fi
+
+VBoxManage extpack install --replace "$REQ_FILE" || rc =$?
+if [ $rc -ne 0 ] ; then
+	echo "Error installing $REQ_FILE. Exiting"
+	exit 1
+fi
+
+exit 0
+
