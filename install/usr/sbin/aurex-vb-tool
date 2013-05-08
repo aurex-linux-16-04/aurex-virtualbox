@@ -65,12 +65,12 @@ fi
 CACHE_DIR="/var/cache/aurex-virtualbox"
 REQ_FILE="$CACHE_DIR/$REQ_NAME"
 REQ_URL="http://download.virtualbox.org/virtualbox/$REQ_VER/$REQ_NAME"
-if [ ! r "$REQ_FILE" ] ; then
+if [ ! -r "$REQ_FILE" ] ; then
 	# try to download file
 	axel -a -o $CACHE_DIR -n 8 "$REQ_URL" || rc=$?
 fi
 
-if [ ! r "$REQ_FILE" ] ; then
+if [ ! -r "$REQ_FILE" ] ; then
 	echo "Error downloading $REQ_URL" >&2
 	exit 1
 fi
