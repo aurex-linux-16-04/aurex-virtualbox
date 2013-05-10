@@ -1,0 +1,5 @@
+#!/bin/sh
+
+aurex-vb4.1-tool update-extpack
+#DEBHELPER#
+

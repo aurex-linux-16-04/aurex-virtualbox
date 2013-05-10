@@ -5,9 +5,23 @@ Maintainer: Luis Antonio Garcia Gisbert <luisgg@gmail.com>
 Build-Depends: debhelper (>= 7.0)
 Standards-Version: 3.8.4
 
+Package: aurex-virtualbox-common
+Architecture: all
+Depends: ${misc:Depends}, axel
+Description: generic virtualbox metapackage for aurex
+ This package installs common stuff for aurex-virtualbox
+ metapackages.
+
 Package: aurex-virtualbox-4.2
 Architecture: all
-Depends: ${misc:Depends}, virtualbox-4.2 (=${VBVersion})
-Description: generic virtualbox-4.2 package for aurex
+Depends: ${misc:Depends}, virtualbox-4.2 (=${VBVersion}), aurex-virtualbox-common
+Description: generic virtualbox-4.2 metapackage for aurex
  This package will always depend on the latest virtualbox-4.2 and
+ extension pack available to keep both programs in sync.
+
+Package: aurex-virtualbox-4.1
+Architecture: all
+Depends: ${misc:Depends}, virtualbox-4.1 (=4.1.26-84997~Ubuntu~precise), aurex-virtualbox-common
+Description: generic virtualbox-4.1 metapackage for aurex
+ This package will always depend on the latest virtualbox-4.1 and
  extension pack available to keep both programs in sync.

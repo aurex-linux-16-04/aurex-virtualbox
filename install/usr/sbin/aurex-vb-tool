@@ -63,7 +63,13 @@ if [ "$CURRENT_VER" ] && [ "$CURRENT_REV" ] && [ "$CURRENT_VER" = "$REQ_VER" ] &
 fi
 
 CACHE_DIR="/var/cache/aurex-virtualbox"
+NETCACHE_DIR="/datos/netcache/aurex-virtualbox"
 REQ_FILE="$CACHE_DIR/$REQ_NAME"
+
+if [ -r "$NETCACHE_DIR/$REQ_NAME" ] ; then
+	REQ_FILE="$NETCACHE_DIR/$REQ_NAME"
+fi
+
 REQ_URL="http://download.virtualbox.org/virtualbox/$REQ_VER/$REQ_NAME"
 
 rc=0
