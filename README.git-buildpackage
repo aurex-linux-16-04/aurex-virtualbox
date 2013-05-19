@@ -1,0 +1,6 @@
+To use git-buildpackage, some extra options are required due to non-standard versioning schema of the package
+(version numbers are choosen to match oracle-virtualbox version number conventions)
+
+build with:
+git-buildpackage --git-no-pristine-tar -us -uc --git-no-create-orig
+
