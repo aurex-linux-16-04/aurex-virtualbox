@@ -1,3 +1,9 @@
+aurex-virtualbox (4.2.16-86992~Ubuntu~precise+aurex1) precise; urgency=low
+
+  * New upstream release
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Mon, 26 Aug 2013 02:16:27 +0200
+
 aurex-virtualbox (4.2.12-84980~Ubuntu~precise+aurex1) precise; urgency=low
 
   * Added virtualbox 4.1 metapackage and support for network cache
