@@ -1,3 +1,9 @@
+aurex-virtualbox (4.2.18-88780~Ubuntu~precise+aurex1) precise; urgency=low
+
+  * New upstream release
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Sat, 07 Sep 2013 04:02:43 +0200
+
 aurex-virtualbox (4.2.16-86992~Ubuntu~precise+aurex1) precise; urgency=low
 
   * New upstream release
