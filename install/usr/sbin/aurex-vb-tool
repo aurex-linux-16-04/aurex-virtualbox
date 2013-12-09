@@ -29,6 +29,9 @@ usage(){
 
 BASE_NAME="$(basename "$0" |sed -e "s%^aurex-%%;s%-tool%%")"
 case "$BASE_NAME" in
+	vb4.3|vb-4.3)
+		VBOXPACKAGE="virtualbox-4.3"
+		;;
 	vb4.2|vb-4.2)
 		VBOXPACKAGE="virtualbox-4.2"
 		;;
