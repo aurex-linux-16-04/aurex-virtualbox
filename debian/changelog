@@ -1,3 +1,10 @@
+aurex-virtualbox (4.3.6-91406~Ubuntu~precise+aurex1) precise; urgency=low
+
+  * New upstream release
+  * Updated virtualbox 4.2 version number
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Mon, 27 Jan 2014 12:37:38 +0100
+
 aurex-virtualbox (4.3.4-91027~Ubuntu~precise+aurex1) precise; urgency=low
 
   * new upstream release
