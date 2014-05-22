@@ -21,7 +21,7 @@ Description: generic virtualbox-4.3 metapackage for aurex
 
 Package: aurex-virtualbox-4.2
 Architecture: all
-Depends: ${misc:Depends}, virtualbox-4.2 (=4.2.22-91556~Ubuntu~precise), aurex-virtualbox-common
+Depends: ${misc:Depends}, virtualbox-4.2 (=4.2.24-92790~Ubuntu~precise), aurex-virtualbox-common
 Description: generic virtualbox-4.2 metapackage for aurex
  This package will always depend on the latest virtualbox-4.2 and
  extension pack available to keep both programs in sync.
