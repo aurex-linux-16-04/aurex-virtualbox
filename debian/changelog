@@ -1,3 +1,10 @@
+aurex-virtualbox (4.3.14-95030~Ubuntu~raring+aurex1) trusty; urgency=medium
+
+  * New upstream release
+  * First version for trusty
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Thu, 28 Aug 2014 13:22:58 +0200
+
 aurex-virtualbox (4.3.12-93733~Ubuntu~precise+aurex1) precise; urgency=low
 
   * New upstream release
