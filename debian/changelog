@@ -1,3 +1,9 @@
+aurex-virtualbox (4.3.16-95972~Ubuntu~raring+aurex1) trusty; urgency=medium
+
+  * New upstream release
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Sun, 14 Sep 2014 23:55:40 +0200
+
 aurex-virtualbox (4.3.14-95030~Ubuntu~raring+aurex1) trusty; urgency=medium
 
   * New upstream release
