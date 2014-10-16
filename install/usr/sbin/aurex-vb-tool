@@ -21,7 +21,7 @@
 
 # whoami?
 usage(){
-	echo "$(basename "$0") update-extpack" >&2
+	echo "$(basename "$0") {update-extpack|set-default}" >&2
 	exit 1
 }
 
@@ -41,8 +41,27 @@ case "$BASE_NAME" in
 		VBOXPACKAGE="virtualbox-4.0"
 		;;
 esac
+
 if [ "$1" = "set-default" ] ; then
+	BEGIN_AUREX="#### ============= BEGIN AUREX AUTOMAGIC SETTINGS ============= ####"
+	END_AUREX="#### ============= END AUREX AUTOMAGIC SETTINGS ============= ####"
+	TMP_FILE="$(tempfile)"
+	DEF_FILE="/etc/default/virtualbox"
+	if [ -r "$DEF_FILE" ] ; then
+		sed -e "/^$BEGIN_AUREX/,/^$END_AUREX/d" "$DEF_FILE" > $TMP_FILE
+	fi
+	cat <<EOF >>$TMP_FILE
+$BEGIN_AUREX
+####  DO NOT EDIT THIS SECTION -- YOUR CHANGES WILL BE OVERWRITTEN ####
+if [ "\$0" = "/var/lib/dpkg/info/virtualbox-4.3.postinst" ] && [ "\$1" = "configure" ] && [ "\$2" ] && [ -x /usr/sbin/aurex-vb4.3-tool ] ; then
+	/usr/sbin/aurex-vb4.3-tool update-extpack "\$2"
 fi
+$END_AUREX
+EOF
+	cat "$TMP_FILE" > "$DEF_FILE"
+	exit 0
+fi
+
 [ "$1" = "update-extpack" ] || usage
 CURRENT_VERSION="$2"
 [ "$CURRENT_VERSION" ] || CURRENT_VERSION="$(dpkg -s "$VBOXPACKAGE" 2>/dev/null |sed -ne "/^Version:/s%^.*[[:blank:]]%%p")"
