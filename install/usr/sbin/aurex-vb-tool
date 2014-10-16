@@ -25,7 +25,6 @@ usage(){
 	exit 1
 }
 
-[ "$1" = "update-extpack" ] || usage
 
 BASE_NAME="$(basename "$0" |sed -e "s%^aurex-%%;s%-tool%%")"
 case "$BASE_NAME" in
@@ -42,8 +41,11 @@ case "$BASE_NAME" in
 		VBOXPACKAGE="virtualbox-4.0"
 		;;
 esac
-
-CURRENT_VERSION="$(dpkg -s "$VBOXPACKAGE" 2>/dev/null |sed -ne "/^Version:/s%^.*[[:blank:]]%%p")"
+if [ "$1" = "set-default" ] ; then
+fi
+[ "$1" = "update-extpack" ] || usage
+CURRENT_VERSION="$2"
+[ "$CURRENT_VERSION" ] || CURRENT_VERSION="$(dpkg -s "$VBOXPACKAGE" 2>/dev/null |sed -ne "/^Version:/s%^.*[[:blank:]]%%p")"
 # check installation
 if [ -z "$CURRENT_VERSION" ] ; then
 	echo "VirtualBox not installed. Exiting"
@@ -55,38 +57,26 @@ REQ_VR="${CURRENT_VERSION%%~*}"
 REQ_REV="${REQ_VR##*-}"
 REQ_NAME="Oracle_VM_VirtualBox_Extension_Pack-${REQ_VR}.vbox-extpack"
 
-CURRENT_VER="$(VBoxManage list extpacks |sed -ne "/^Version:/{s%^.*[[:blank:]]%%;p}")"
-CURRENT_REV="$(VBoxManage list extpacks |sed -ne "/^Revision:/{s%^.*[[:blank:]]%%;p}")"
+VBMGR="$(which VBoxManage) || true
+if [ "$VBMGR" ] ; then
+	CURRENT_VER="$(VBoxManage list extpacks |sed -ne "/^Version:/{s%^.*[[:blank:]]%%;p}")"
+	CURRENT_REV="$(VBoxManage list extpacks |sed -ne "/^Revision:/{s%^.*[[:blank:]]%%;p}")"
+fi
 
-DOWNLOAD_EXT="Y"
 if [ "$CURRENT_VER" ] && [ "$CURRENT_REV" ] && [ "$CURRENT_VER" = "$REQ_VER" ] && [ "$CURRENT_REV" = "$REQ_REV" ] ; then
 	# not download nor install required
 	echo "Extension pack updated. Exiting"
 	exit 0
 fi
 
-CACHE_DIR="/var/cache/aurex-virtualbox"
-NETCACHE_DIR="/datos/netcache/aurex-virtualbox"
-REQ_FILE="$CACHE_DIR/$REQ_NAME"
-
-if [ -r "$NETCACHE_DIR/$REQ_NAME" ] ; then
-	REQ_FILE="$NETCACHE_DIR/$REQ_NAME"
-fi
-
 REQ_URL="http://download.virtualbox.org/virtualbox/$REQ_VER/$REQ_NAME"
-
 rc=0
-if [ ! -r "$REQ_FILE" ] ; then
-	# try to download file
-	axel -a -o $CACHE_DIR -n 8 "$REQ_URL" || rc=$?
+if aurex-cache get "$REQ_URL" ; then
+	if [ "$VBMGR" ] ; then
+		REQ_FILE="$(aurex-cache file "$REQ_URL")"
+		VBoxManage extpack install --replace "$REQ_FILE" || rc=$?
+	fi
 fi
-
-if [ ! -r "$REQ_FILE" ] ; then
-	echo "Error downloading $REQ_URL" >&2
-	exit 1
-fi
-
-VBoxManage extpack install --replace "$REQ_FILE" || rc=$?
 if [ $rc -ne 0 ] ; then
 	echo "Error installing $REQ_FILE. Exiting"
 	exit 1

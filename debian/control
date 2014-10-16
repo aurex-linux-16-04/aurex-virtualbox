@@ -1,5 +1,5 @@
 Source: aurex-virtualbox
-Section: admin
+Section: metapackages
 Priority: optional
 Maintainer: Luis Antonio Garcia Gisbert <luisgg@gmail.com>
 Build-Depends: debhelper (>= 7.0)
@@ -14,7 +14,8 @@ Description: generic virtualbox metapackage for aurex
 
 Package: aurex-virtualbox-4.3
 Architecture: all
-Depends: ${misc:Depends}, virtualbox-4.3 (=${VBVersion}), aurex-virtualbox-common
+Depends: ${misc:Depends}, virtualbox-4.3, aurex-virtualbox-common
+Recommends: virtualbox-4.3 (=${VBVersion})
 Description: generic virtualbox-4.3 metapackage for aurex
  This package will always depend on the latest virtualbox-4.3 and
  extension pack available to keep both programs in sync.
