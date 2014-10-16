@@ -53,8 +53,8 @@ if [ "$1" = "set-default" ] ; then
 	cat <<EOF >>$TMP_FILE
 $BEGIN_AUREX
 ####  DO NOT EDIT THIS SECTION -- YOUR CHANGES WILL BE OVERWRITTEN ####
-if [ "\$0" = "/var/lib/dpkg/info/virtualbox-4.3.postinst" ] && [ "\$1" = "configure" ] && [ "\$2" ] && [ -x /usr/sbin/aurex-vb4.3-tool ] ; then
-	/usr/sbin/aurex-vb4.3-tool update-extpack "\$2"
+if [ "\$0" = "/var/lib/dpkg/info/virtualbox-4.3.postinst" ] && [ "\$1" = "configure" ] && [ -x /usr/sbin/aurex-vb4.3-tool ] ; then
+	/usr/sbin/aurex-vb4.3-tool update-extpack
 fi
 $END_AUREX
 EOF
