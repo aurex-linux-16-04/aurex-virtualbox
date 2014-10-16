@@ -76,7 +76,7 @@ REQ_VR="${CURRENT_VERSION%%~*}"
 REQ_REV="${REQ_VR##*-}"
 REQ_NAME="Oracle_VM_VirtualBox_Extension_Pack-${REQ_VR}.vbox-extpack"
 
-VBMGR="$(which VBoxManage) || true
+VBMGR="$(which VBoxManage)" || true
 if [ "$VBMGR" ] ; then
 	CURRENT_VER="$(VBoxManage list extpacks |sed -ne "/^Version:/{s%^.*[[:blank:]]%%;p}")"
 	CURRENT_REV="$(VBoxManage list extpacks |sed -ne "/^Revision:/{s%^.*[[:blank:]]%%;p}")"

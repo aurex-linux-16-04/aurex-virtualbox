@@ -1,5 +1,6 @@
 #!/bin/sh
 
+aurex-vb4.3-tool set-default
 aurex-vb4.3-tool update-extpack
 #DEBHELPER#
 
