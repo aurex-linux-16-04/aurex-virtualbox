@@ -7,7 +7,7 @@ Standards-Version: 3.8.4
 
 Package: aurex-virtualbox-common
 Architecture: all
-Depends: ${misc:Depends}, axel
+Depends: ${misc:Depends}, aurex-cache
 Description: generic virtualbox metapackage for aurex
  This package installs common stuff for aurex-virtualbox
  metapackages.
@@ -15,10 +15,9 @@ Description: generic virtualbox metapackage for aurex
 Package: aurex-virtualbox-4.3
 Architecture: all
 Depends: ${misc:Depends}, virtualbox-4.3, aurex-virtualbox-common
-Recommends: virtualbox-4.3 (=${VBVersion})
 Description: generic virtualbox-4.3 metapackage for aurex
- This package will always depend on the latest virtualbox-4.3 and
- extension pack available to keep both programs in sync.
+ This package allow automatic download and installation of
+ extension packs on virtualbox updates.
 
 Package: aurex-virtualbox-4.2
 Architecture: all
