@@ -1,0 +1,6 @@
+#!/bin/sh
+
+aurex-vb5.0-tool set-default
+aurex-vb5.0-tool update-extpack
+#DEBHELPER#
+

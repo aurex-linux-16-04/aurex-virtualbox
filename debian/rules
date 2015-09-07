@@ -5,5 +5,5 @@
 
 override_dh_gencontrol:
 #	remove aurex revision (+aurexN...) from current version
-	sed -ne "1{s%^.*(%VBVersion=%;s%).*$$%%;s%.aurex.*$$%%;p}" debian/changelog >> debian/aurex-virtualbox-4.3.substvars
+	sed -ne "1{s%^.*(%VBVersion=%;s%).*$$%%;s%.aurex.*$$%%;p}" debian/changelog >> debian/aurex-virtualbox-5.0.substvars
 	dh_gencontrol
