@@ -1,3 +1,9 @@
+aurex-virtualbox (5.0.2+aurex2) trusty; urgency=medium
+
+  * Fixed Depends
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Thu, 10 Sep 2015 03:09:21 +0200
+
 aurex-virtualbox (5.0.2+aurex1) trusty; urgency=medium
 
   * Dummy upgrade

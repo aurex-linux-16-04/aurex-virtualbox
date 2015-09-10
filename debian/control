@@ -14,28 +14,28 @@ Description: generic virtualbox metapackage for aurex
 
 Package: aurex-virtualbox-5.0
 Architecture: all
-Depends: ${misc:Depends}, virtualbox-5.0, aurex-virtualbox-common
+Depends: ${misc:Depends}, virtualbox-5.0, aurex-virtualbox-common (=${binary:Version})
 Description: generic virtualbox-5.0 metapackage for aurex
  This package allow automatic download and installation of
  extension packs on virtualbox updates.
 
 Package: aurex-virtualbox-4.3
 Architecture: all
-Depends: ${misc:Depends}, virtualbox-4.3 (=4.3.30-101610~Ubuntu~raring), aurex-virtualbox-common
+Depends: ${misc:Depends}, virtualbox-4.3 (=4.3.30-101610~Ubuntu~raring), aurex-virtualbox-common (=${binary:Version})
 Description: generic virtualbox-4.3 metapackage for aurex
  This package allow automatic download and installation of
  extension packs on virtualbox updates.
 
 Package: aurex-virtualbox-4.2
 Architecture: all
-Depends: ${misc:Depends}, virtualbox-4.2 (=4.2.24-92790~Ubuntu~precise), aurex-virtualbox-common
+Depends: ${misc:Depends}, virtualbox-4.2 (=4.2.24-92790~Ubuntu~precise), aurex-virtualbox-common (=${binary:Version})
 Description: generic virtualbox-4.2 metapackage for aurex
  This package will always depend on the latest virtualbox-4.2 and
  extension pack available to keep both programs in sync.
 
 Package: aurex-virtualbox-4.1
 Architecture: all
-Depends: ${misc:Depends}, virtualbox-4.1 (=4.1.26-84997~Ubuntu~precise), aurex-virtualbox-common
+Depends: ${misc:Depends}, virtualbox-4.1 (=4.1.26-84997~Ubuntu~precise), aurex-virtualbox-common (=${binary:Version})
 Description: generic virtualbox-4.1 metapackage for aurex
  This package will always depend on the latest virtualbox-4.1 and
  extension pack available to keep both programs in sync.
