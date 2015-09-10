@@ -1,3 +1,9 @@
+aurex-virtualbox (5.0.2+aurex1) trusty; urgency=medium
+
+  * Dummy upgrade
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Thu, 10 Sep 2015 02:55:42 +0200
+
 aurex-virtualbox (5.0.2) trusty; urgency=medium
 
   * New upstream release
