@@ -20,7 +20,7 @@ Description: generic virtualbox-5.0 metapackage for aurex
  extension packs on virtualbox updates.
 
 Package: aurex-virtualbox-4.3
-Architecture: all
+Architecture: any
 Depends: ${misc:Depends}, virtualbox-4.3 (=4.3.32-103443~Ubuntu~raring) [amd64], virtualbox-4.3 (=4.3.32-103443~Ubuntu~precise) [i386], aurex-virtualbox-common (=${binary:Version})
 Description: generic virtualbox-4.3 metapackage for aurex
  This package allow automatic download and installation of
