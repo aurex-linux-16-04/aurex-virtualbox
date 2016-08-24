@@ -12,9 +12,16 @@ Description: generic virtualbox metapackage for aurex
  This package installs common stuff for aurex-virtualbox
  metapackages.
 
+Package: aurex-virtualbox-5.1
+Architecture: all
+Depends: ${misc:Depends}, virtualbox-5.1, aurex-virtualbox-common (=${binary:Version})
+Description: generic virtualbox-5.1 metapackage for aurex
+ This package allow automatic download and installation of
+ extension packs on virtualbox updates.
+
 Package: aurex-virtualbox-5.0
 Architecture: all
-Depends: ${misc:Depends}, virtualbox-5.0, aurex-virtualbox-common (=${binary:Version})
+Depends: ${misc:Depends}, virtualbox-5.0 (=5.0.26-108824~Ubuntu~trusty), aurex-virtualbox-common (=${binary:Version})
 Description: generic virtualbox-5.0 metapackage for aurex
  This package allow automatic download and installation of
  extension packs on virtualbox updates.
